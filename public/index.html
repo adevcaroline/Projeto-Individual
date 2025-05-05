@@ -1,74 +1,350 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Wizard | Quiz</title>
-
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="icon" href="./assets/icon/chapeu-de-bruxa.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon" type="image/png" href="assets/image/chapeu-icon.png" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> 
+    <link rel="stylesheet" href="css/index.css">
+    <title>Harry Potter Quiz</title>
 </head>
 
 <body>
-    <div class="header">
-      <div class="container">
-        <img class="logo" src="../public/assets/imgs/Colors-Harry-Potter-Logo-removebg-preview.png" alt="Harry Potter Logo">
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="sobre.html">Sobre</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    
-  
-    <div class="boxes">
-      <div class="box">
-        <img src="assets/imgs/Chapéu seletor harry potter png sem fundo.png">
-        <div class="box-texto">
-          <h4>Descubra sua casa em Hogwarts</h4>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+    <header id="home">
+        <nav class="nav">
+            <a href="#home"><img src="assets/image/logo-gold.png" alt="Harry Potter Logo"></a>
+
+            <div class="nav-list">
+                <ul>
+                    <li><a href="#aboutOp">SOBRE</a></li>
+                    <li><a href="#game">QUIZ</a></li>
+                    <li><a href="#developer">DESENVOLVEDORA</a></li>
+                </ul>
+                <a href="login.html" class="sign-in-btn">Entrar</a>
+                <a href="cadastro.html" class="sign-in-btn">Cadastrar</a>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="column-1"></div>
+            <div class="column-2">
+                <div>
+                    <h1><span>alohomora!</span></h1>
+                    <p>Prepare sua varinha e vista sua capa! Aqui você
+                         embarca numa jornada mágica onde poderá 
+                         descobrir a qual Casa de Hogwarts pertence,
+                        qual é o seu Patrono e qual Varinha escolherá você.
+                        Explore os testes, conheça o universo de Harry Potter e
+                         descubra o bruxo ou bruxa dentro de você!
+                    </p>
+                </div>
+            </div>
+            <a href="#aboutOp"><img src="assets/svg/down-arrow.svg"></a>
         </div>
-      </div>
-    
-      <div class="box">
-        <img src="assets/imgs/cervo.png" alt="Imagem do cervo">
-        <div class="box-texto">
-          <h4>Descubra seu Patrono</h4>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+    </header>
+
+    <main>
+        <section id="aboutOp">
+            
+        </section>
+
+        <section id="timeline">
+            <h1 data-aos="fade-down" data-aos-duration="1300"><span>Sobre a Saga</h1>
+
+            <div class="container">
+                <div class="column-1">
+                    <div class="img-container">
+                        <img src="assets/image/ordem-livros-harry-potter.jpg">
+                    </div>
+                </div>
+
+                <div class="column-2"></div>
+
+                <div class="column-3 line">
+                    <h2 data-aos="fade-right" data-aos-duration="1300">Livros</h2>
+                    <p data-aos="fade-right" data-aos-duration="1300">
+                        A série de livros Harry Potter, escrita por J.K. Rowling, foi lançada entre 1997 e 2007 e é composta por sete volumes. O primeiro livro, Harry Potter e a Pedra Filosofal, foi publicado em 1997 e apresentou ao mundo o jovem bruxo. Em seguida vieram A Câmara Secreta (1998), O Prisioneiro de Azkaban (1999), O Cálice de Fogo (2000), A Ordem da Fênix (2003), O Enigma do Príncipe (2005) e, por fim, As Relíquias da Morte (2007), que encerra a saga. A série se tornou um fenômeno mundial e marcou uma geração de leitores.
+                    </p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="column-1 line">
+                    <h2 data-aos="fade-left" data-aos-duration="1300">Trio de Ouro</h2>
+                    <p data-aos="fade-left" data-aos-duration="1300">
+                        O "trio de ouro" é formado por Harry Potter, Hermione Granger e Ron Weasley, os melhores amigos da série. Eles se conhecem em Hogwarts e enfrentam juntos diversos perigos, incluindo o vilão Voldemort. Harry é corajoso, Hermione é muito inteligente, e Ron é leal e divertido. Juntos, representam a força da amizade e do trabalho em equipe.
+                    </p>
+                </div>
+
+                <div class="column-2"></div>
+
+                <div class="column-3">
+                    <div class="img-container">
+                        <img src="assets/image/trio.jpg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="column-1">
+                    <div class="img-container">
+                        <img src="assets/image/casas.webp">
+                    </div>
+                </div>
+
+                <div class="column-2"></div>
+
+                <div class="column-3 line">
+                    <h2 data-aos="fade-right" data-aos-duration="1300">Casas</h2>
+                    <p data-aos="fade-right" data-aos-duration="1300">
+                        Em Harry Potter, os alunos da escola de magia de Hogwarts são divididos em quatro grupos chamados casas. Cada casa representa um conjunto de qualidades e tem sua própria história e símbolos. Ao entrar em Hogwarts, um chapéu mágico escolhe em qual casa o aluno deve ficar, com base na sua personalidade. <br>
+                        Grifinória é para os corajosos e ousados.
+                        <br>
+                        Sonserina reúne os ambiciosos e astutos.
+                        <br>
+                        Corvinal valoriza os inteligentes e criativos.
+                        <br>
+                        Lufa-Lufa acolhe os leais, gentis e trabalhadores.
+                    </p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="column-1 line">
+                    <h2 data-aos="fade-left" data-aos-duration="1300">EXPECTO PATRONUM</h2>
+                    <p data-aos="fade-left" data-aos-duration="1300">
+                        Um patrono é uma forma mágica poderosa usada para afastar criaturas chamadas dementadores, que se alimentam da felicidade das pessoas. Cada bruxo que consegue conjurar um patrono produz uma figura prateada única, geralmente em forma de um animal, que representa sua essência interior. O feitiço usado é "Expecto Patronum". Nem todos conseguem lançar um patrono completo, pois exige muita força emocional e lembranças felizes.
+                    </p>
+                </div>
+
+                <div class="column-2"></div>
+
+                <div class="column-3">
+                    <div class="img-container">
+                        <img src="assets/image/patronos.jpg.webp">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="column-1">
+                    <div class="img-container">
+                        <img src="assets/image/harry-varinha.jpg">
+                    </div>
+                </div>
+
+                <div class="column-2"></div>
+
+                <div class="column-3 line">
+                    <h2 data-aos="fade-right" data-aos-duration="1300">A varinha escolhe o Bruxo</h2>
+                    <p data-aos="fade-right" data-aos-duration="1300">
+                        No mundo de Harry Potter, a varinha é o principal instrumento de um bruxo para canalizar sua magia. Cada varinha é única e feita com um tipo específico de madeira, um núcleo mágico (como pena de fênix, pelo de unicórnio ou fibra de coração de dragão) e um tamanho diferente. Segundo a tradição, “a varinha escolhe o bruxo”, o que significa que a conexão entre o bruxo e sua varinha é muito especial. Uma varinha bem combinada torna os feitiços mais poderosos e estáveis.
+                    </p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="column-1 line">
+                    <h2 data-aos="fade-left" data-aos-duration="1300">Quadribol</h2>
+                    <p data-aos="fade-left" data-aos-duration="1300">
+                        O quadribol é o esporte mais popular do mundo bruxo em Harry Potter. É jogado no ar com vassouras por dois times de sete jogadores. Cada time tenta marcar pontos com uma bola chamada goles, enquanto evita os balaços, que são bolas encantadas que atacam os jogadores. O jogo só termina quando o apanhador captura o pomo de ouro, uma pequena bola dourada que vale 150 pontos. É um jogo rápido, emocionante e muito valorizado em Hogwarts.
+                    </p>
+                </div>
+
+                <div class="column-2"></div>
+
+                <div class="column-3">
+                    <div class="img-container">
+                        <img src="assets/image/quadribol.jpg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="column-1">
+                    <div class="img-container">
+                        <img src="assets/image/animais.avif">
+                    </div>
+                </div>
+
+                <div class="column-2"></div>
+
+                <div class="column-3 line">
+                    <h2 data-aos="fade-right" data-aos-duration="1300">Criaturas Mágicas</h2>
+                    <p data-aos="fade-right" data-aos-duration="1300">
+                        As criaturas mágicas fazem parte essencial do mundo de Harry Potter e variam de seres encantadores a criaturas perigosas. Algumas são estudadas na aula de Trato das Criaturas Mágicas, como:
+                        <br>
+                        Hipogrifo: orgulhoso e poderoso, com corpo de cavalo e asas de águia. É preciso respeito para se aproximar.
+                        <br>
+                        Trasgo (troll): enormes e fortes, mas muito lentos e pouco inteligentes.
+                        <br>
+                        Dementador: criaturas sombrias que se alimentam da felicidade e causam desespero.
+                        <br>
+                        Elfo-doméstico: pequenos seres mágicos que servem famílias bruxas; Dobby é um exemplo famoso.
+                        <br>
+                        Fênix: ave mágica que renasce das cinzas e cujas lágrimas têm poder de cura.
+                    </p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="column-1 line">
+                    <h2 data-aos="fade-left" data-aos-duration="1300">Relíquias da Morte</h2>
+                    <p data-aos="fade-left" data-aos-duration="1300">
+                        As Relíquias da Morte são três objetos mágicos lendários criados, segundo a história, pela própria Morte. São: a Varinha das Varinhas, a mais poderosa de todas; a Pedra da Ressurreição, que permite falar com os mortos; e a Capa da Invisibilidade, que torna o usuário invisível. Quem possuísse as três seria considerado o "Mestre da Morte". Esses itens têm grande importância na parte final da saga e estão ligados tanto à lenda quanto ao destino de Harry.
+                    </p>
+                </div>
+
+                <div class="column-2"></div>
+
+                <div class="column-3">
+                    <div class="img-container">
+                        <img src="assets/image/relíquias-da-morte.jpg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="column-1">
+                    <div class="img-container">
+                        <video width="548" controls>
+                            <source src="assets/image/video.mp4" type="video/mp4">
+                            Seu navegador não suporta a tag de vídeo.
+                          </video>
+                    </div>
+                </div>
+
+                <div class="column-2"></div>
+
+                <div class="column-3 line">
+                    <h2 data-aos="fade-right" data-aos-duration="1300">Always</h2>
+                    <p data-aos="fade-right" data-aos-duration="1300">
+                        Mais do que uma história, Harry Potter é um lugar onde o coração encontra abrigo.
+                        Cada canto de Hogwarts guarda memórias de amizade, coragem e descobertas que marcaram uma geração.
+                        Ao assistir, revivemos a sensação de que a magia está viva, não só nos feitiços, mas nos laços que construímos, nos sonhos que despertamos.
+                        Este vídeo é um convite para lembrar: Hogwarts sempre estará lá para nos acolher, quando precisarmos voltar.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="game">
+            <div class="line-1">
+                <div class="column-1"></div>
+                <div class="column-2">
+                    <h1 data-aos="fade-left" data-aos-duration="1300"><span>Quizzes </h1>
+                </div>
+            </div>
+                            <div class="boxes">
+
+                                <div class="box">
+                                  <img src="assets/image/chapeu.png">
+                                  <div class="box-texto">
+                                    <h4>Descubra sua casa em Hogwarts</h4>
+                                    <p>Será que você pertence à Grifinória, Sonserina, Corvinal ou Lufa-Lufa?</p>
+                                  </div>
+                                </div>
+                
+                                <div class="box">
+                                  <img src="assets/image/cervo.png" alt="Imagem do cervo">
+                                  <div class="box-texto">
+                                    <h4>Descubra seu Patrono</h4>
+                                    <p>Conheça a criatura mágica que representa sua alma!</p>
+                                  </div>
+                                </div>
+                              
+                                <div class="box">
+                                  <img src="assets/image/varinha.png" alt="Imagem de uma varinha">
+                                  <div class="box-texto">
+                                    <h4><br>Encontre a varinha Perfeita</h4>
+                                    <p>A varinha escolhe o bruxo... Descubra a sua!.</p>
+                                  </div>
+                                </div>
+        </section>
+
+        <section id="developer">
+            <div class="line-1">
+                <div class="column-1">
+                    <h1 data-aos="fade-right" data-aos-duration="1300">Desenv<span>olvedora</span></h1>
+                </div>
+                <div class="column-2"></div>
+            </div>
+
+            <div class="line-2">
+                <div class="column-1">
+                    <div data-aos="fade-right" data-aos-duration="1300">
+                        <img src="assets/image/dev.jpeg" alt="Foto da desenvolvedora">
+                    </div>
+                </div>
+
+                <div class="column-2" data-aos="fade-right" data-aos-duration="1300">
+                    <div class="container">
+                        <h2>Sobre mim</h2>
+                        <p>Olá, me chamo Caroline Soares, sou formada em Contabilidade e atualmente estou cursando Análise e
+                            Desenvolvimento de Sistemas pela SPTech (São Paulo Tech School). Gosto muito de ouvir
+                            música, jogar videogame e acompanhar tudo sobre Harry Potter em meu tempo livre.</p>
+                    </div>
+
+                    <div class="container">
+                        <h2>Por que um projeto sobre Harry Potter?</h2>
+                        <p>Porque Harry Potter fez parte da minha infância e me ensinou muitas coisas importantes, como amizade, coragem e o valor de fazer o que é certo, mesmo quando é difícil.
+                            Esse mundo mágico sempre me inspirou, despertou o meu amor pela leitura e pela imaginação, e criar esse projeto é uma forma de compartilhar essa magia com outras pessoas que também cresceram com essa história ou que estão conhecendo agora.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="column-1">
+            <img src="assets/image/logo-gold.png">
+            <h5>© 2025 Caroline Soares</h5>
         </div>
-      </div>
-    
-      <div class="box">
-        <img src="assets/imgs/varinha-unicorn-hair-removebg-preview.png" alt="Imagem de uma varinha">
-        <div class="box-texto">
-          <h4>Encontre a varinha Perfeita</h4>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+
+        <div class="column-2">
+            <div>
+                <a href="#home">Home</a>
+                <a href="#aboutOp">Sobre</a>
+            </div>
+
+            <div>
+                <a href="#game">Quizz</a>
+                <a href="#developer">Desenvolvedora</a>
+            </div>
         </div>
-      </div>
-    </div>
-  
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2024</h4>
-        <span class="version">v1.0.0</span>
-      </div>
-    </div>
-  </body>
+
+        <div class="column-3">
+            <div>
+                <div class="contact-container">
+                    <div>
+                        <img class="email-icon" src="assets/svg/email-icon.svg">
+                        <h5><a href="mailto:caroline.soares@sptech.school">caroline.soares@sptech.school</a></h5>
+                    </div>
+
+                    <div>
+                        <img class="contact-icon" src="assets/svg/contact-icon.svg">
+                        <h5>(11) 4002-8922</h5>
+                    </div>
+
+                    <div>
+                        <img class="adress-icon" src="assets/svg/adress-icon.svg">
+                        <h5>Rua dos Alfeneiros, nº 4.</h5>
+                    </div>
+                </div>
+
+                <div class="social-line">
+                    <a href="https://github.com/adevcaroline" target="_blank"><img src="assets/svg/github-icon.svg"
+                            alt="GitHub"></a>
+                    <a href="https://www.linkedin.com/in/carolinesoares19/" target="_blank"><img
+                            src="assets/svg/linkedin-icon.svg" alt="LinkedIn"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/index.js"></script>
+</body>
 
 </html>
