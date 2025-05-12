@@ -91,12 +91,12 @@ let questions = [
     },
     {
         numb: 10,
-        question: "Se pudesse escolher um objeto mágico, qual seria?",
+        question: "Se estivesse em uma situação difícil, qual seria sua principal estratégia?",
         options: [
-            { text: "Espada de Godric Gryffindor", house: "grifinoria" },
-            { text: "Medalhão de Salazar Slytherin", house: "sonserina" },
-            { text: "Diadema de Rowena Ravenclaw", house: "corvinal" },
-            { text: "Taça de Helga Hufflepuff", house: "lufalufa" }
-        ]
-    }
+            { text: "Enfrentar a situação com coragem e ação", house: "grifinoria" },
+            { text: "Buscar uma solução estratégica, sem se preocupar com o que os outros pensam", house: "sonserina" },
+            { text: "Analisar os fatos e buscar a solução mais lógica", house: "corvinal" },
+            { text: "Unir as pessoas para encontrar uma solução justa e equilibrada", house: "lufalufa" }
+  ]
+}
 ];
