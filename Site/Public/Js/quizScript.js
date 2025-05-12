@@ -3,68 +3,58 @@ document.addEventListener("DOMContentLoaded", () => {
   const optionList = document.getElementById("option-list");
   const nextBtn = document.getElementById("next-btn");
 
-  let currentQuestion = 0;
+  let current = 0;
   let selected = false;
-  let housePoints = {
-    grifinoria: 0,
-    sonserina: 0,
-    corvinal: 0,
-    lufalufa: 0
+  const points = { grifinoria: 0, sonserina: 0, corvinal: 0, lufalufa: 0 };
+
+  const images = {
+    grifinoria: "assets/grifinoria.png",
+    sonserina: "assets/sonserina.png",
+    corvinal: "assets/corvinal.png",
+    lufalufa: "assets/lufa-removebg-preview.png"
   };
 
-  function showQuestion(index) {
-    const q = questions[index];
+  const showQuestion = () => {
+    const q = questions[current];
     questionText.textContent = q.question;
     optionList.innerHTML = "";
     selected = false;
 
-    q.options.forEach((opt, i) => {
+    q.options.forEach(opt => {
       const div = document.createElement("div");
       div.textContent = opt.text;
-      div.dataset.house = opt.house;
-      div.addEventListener("click", () => {
+      div.classList.add("option");
+      div.onclick = () => {
         if (selected) return;
         selected = true;
-        housePoints[opt.house]++;
+        points[opt.house]++;
         div.classList.add("selected");
-        Array.from(optionList.children).forEach(child => child.classList.add("disabled"));
-      });
+        [...optionList.children].forEach(c => c.classList.add("disabled"));
+      };
       optionList.appendChild(div);
     });
-  }
+  };
 
-  nextBtn.addEventListener("click", () => {
-    if (!selected) return;
-    currentQuestion++;
-    if (currentQuestion < questions.length) {
-      showQuestion(currentQuestion);
-    } else {
-      showResult();
-    }
-  });
-
-  function showResult() {
-    const container = document.querySelector(".container");
+  const showResult = () => {
     const quizBox = document.querySelector(".quiz_box");
     quizBox.innerHTML = "";
 
-    const result = Object.entries(housePoints).sort((a, b) => b[1] - a[1])[0][0];
-    const capitalized = result.charAt(0).toUpperCase() + result.slice(1);
-
-     const houseImages = {
-     grifinoria: "assets/grifinoria.png",
-    sonserina: "assets/sonserina.png",
-    corvinal: "assets/corvinal.png",
-    lufalufa: "assets/lufa-removebg-preview.png"
-};
+    const topHouse = Object.entries(points).sort((a, b) => b[1] - a[1])[0][0];
+    const name = topHouse.charAt(0).toUpperCase() + topHouse.slice(1);
 
     quizBox.innerHTML = `
       <h2>Parabéns!</h2>
-      <p>Você foi selecionado para a <strong>${capitalized}</strong>!</p>
-      <img src="${houseImages[result]}" alt="${capitalized}">
+      <p>Você foi selecionado para a <strong>${name}</strong>!</p>
+      <img src="${images[topHouse]}" alt="${name}">
       <button class="restart-btn" onclick="location.reload()">Reiniciar Quiz</button>
     `;
-  }
+  };
 
-  showQuestion(currentQuestion);
+  nextBtn.onclick = () => {
+    if (!selected) return;
+    current++;
+    current < questions.length ? showQuestion() : showResult();
+  };
+
+  showQuestion();
 });
