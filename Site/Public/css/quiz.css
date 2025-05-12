@@ -86,3 +86,21 @@
       cursor: pointer;
     }
  
+.quiz_box img {
+  display: block;
+  max-width: 300px;
+  margin: 20px auto;
+  background-color: transparent;
+}
+
+.restart-btn {
+  background-color: #1d2b36;
+  color: #f4ecd8;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: block;
+  margin: 30px auto 0;
+}

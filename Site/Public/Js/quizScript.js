@@ -51,10 +51,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const result = Object.entries(housePoints).sort((a, b) => b[1] - a[1])[0][0];
     const capitalized = result.charAt(0).toUpperCase() + result.slice(1);
 
+     const houseImages = {
+     grifinoria: "assets/grifinoria.png",
+    sonserina: "assets/sonserina.png",
+    corvinal: "assets/corvinal.png",
+    lufalufa: "assets/lufa-removebg-preview.png"
+};
+
     quizBox.innerHTML = `
       <h2>Parabéns!</h2>
       <p>Você foi selecionado para a <strong>${capitalized}</strong>!</p>
-      <button onclick="location.reload()">Reiniciar Quiz</button>
+      <img src="${houseImages[result]}" alt="${capitalized}">
+      <button class="restart-btn" onclick="location.reload()">Reiniciar Quiz</button>
     `;
   }
 
