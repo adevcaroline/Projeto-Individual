@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+       background: linear-gradient(rgba(172, 128, 84, 0.781) 100%), url("../assets/fundinho.jpg");
+}
+
+/* Sidebar */
+/* nav.sidebar {
+  background-color:#502218;
+  color: #fff;
+  width: 160px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  position: fixed;
+}
+
+nav.sidebar a {
+  color: #f4ecd8;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+nav.sidebar a:hover {
+  color: #ffcc00;
+} */
+
+nav.sidebar {
+  background-color: #531f13; /* marrom escuro */
+  color: #fff;
+  width: 180px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* empurra o logout para o final */
+  padding: 30px 10px;
+  position: fixed;
+}
+
+.sidebar-top,
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+nav.sidebar a {
+  color: #f4ecd8;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 10px; /* mais à esquerda */
+}
+
+nav.sidebar a:hover {
+  color: #ffcc00;
+}
+
+/* Conteúdo */
+.content {
+  margin-left: 160px;
+  padding: 30px;
+  width: 100%;
+}
+
+.kpi-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.kpi {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px 30px;
+  min-width: 240px;
+  text-align: center;
+}
+
+.kpi h2 {
+  color: #0B5884;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.kpi div {
+  font-size: 22px;
+  color: #333;
+}
+
+.chart-wrapper {
+  max-width: 900px;
+  height: 400px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#casaChart {
+  width: 100%;
+  height: 100%;
+}

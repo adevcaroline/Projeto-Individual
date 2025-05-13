@@ -9,33 +9,35 @@
       font-family: 'Georgia', serif;
       background: linear-gradient(rgba(172, 128, 84, 0.781) 100%), url("../assets/fundinho.jpg");
       display: flex;
-      height: 100vh;
+      height: 100px;
     }
+    
+/* Sidebar */
+nav.sidebar {
+  background-color:#502218;
+  color: #fff;
+  width: 160px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  position: fixed;
+}
 
-    nav.sidebar {
-      background-color: #1d2b36;
-      color: #fff;
-      width: 200px;
-      display: flex;
-      flex-direction: column;
-      padding-top: 40px;
-      align-items: center;
-    }
+nav.sidebar a {
+  color: #f4ecd8;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-    nav.sidebar a {
-      color: #f4ecd8;
-      text-decoration: none;
-      font-size: 18px;
-      margin: 20px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    nav.sidebar a:hover {
-      color: #ffcc00;
-    }
-
+nav.sidebar a:hover {
+  color: #ff8800;
+}
     .container {
       flex: 1;
       padding: 60px;
