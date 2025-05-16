@@ -17,7 +17,7 @@ body {
     font-family: Montserrat;
     color: #ffffff;
     height: 100%;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.74) 100%), url("../assets/image/castelo-banner.jpg");
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.74) 100%), url("../assets/fundinho.jpg");
     background-position: center;
     background-size: 100%;
 }

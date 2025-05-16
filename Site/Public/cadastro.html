@@ -51,11 +51,57 @@
             <span>Confirmação da Senha:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
           </div>
-          <button class="botao">Cadastrar</button>
+          <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
       </div>
     </div>
   </div>
-
 </body>
 </html>
+<script>
+
+  function cadastrar() {
+    var nomeUsuario = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmarVar = confirmacao_senha_input.value;
+
+    if (
+      nomeUsuario == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmarVar == ""
+    ) {
+      alert("Preencha todos os campos.");
+      return false;
+    }
+
+    if (senhaVar.length < 8) {
+      alert("A senha deve conter no mínimo 8 caracteres");
+      return false;
+    }
+
+    if (!/[A-Z]/.test(senhaVar)) {
+      alert("A senha deve conter alguma letra maiúscula");
+      return false;
+    }
+
+    if (!/[0-9]/.test(senhaVar)) {
+      alert("A senha deve conter algum número");
+      return false;
+    }
+
+    if (senhaVar != confirmarVar) {
+      alert("As senhas não coincidem.");
+      return false;
+    }
+
+    if (emailVar.includes('@') == false ) {
+      alert("Email Inválido");
+      return false;
+    }
+
+    console.log("Todos os dados validados. Pronto para enviar ao backend.");
+  }
+
+</script>
