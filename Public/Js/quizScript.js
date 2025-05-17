@@ -58,3 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showQuestion();
 });
+
+window.onload = function () {
+    if (!sessionStorage.ID_USUARIO) {
+        alert("Você precisa estar logado para acessar o quiz!");
+        window.location = "./login.html";
+    }
+}

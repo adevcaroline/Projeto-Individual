@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     <title>Harry Potter Quiz</title>
+
 
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="icon" href="assets/image/chapeu-icon.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
+
 <body>
+
 
     <nav class="nav">
         <a href="index.html">
           <img src="assets/image/logo-gold.png" alt="Harry Potter Logo" />
         </a>
-      
+     
         <ul class="nav-links">
             <li><a href="index.html">HOME</a></li>
         </ul>
-      
+     
         <div class="nav-buttons">
           <a href="login.html" class="sign-in-btn">Entrar</a>
           <a href="cadastro.html" class="sign-in-btn">Cadastrar</a>
         </div>
       </nav>
 
+
     <div class="login">
-  
+ 
         <div class="container">
             <div class="card card-login">
                 <h2>Olá de volta!</h2>
@@ -44,13 +50,79 @@
                         <span>Senha:</span>
                         <input id="senha_input" type="password" placeholder="******">
                     </div>
-                    <button class="botao">Entrar</button>
+                    <button class="botao"  onclick="entrar()">Entrar</button>
                 </div>
+
 
             </div>
         </div>
     </div>
 
-</body>
 
+</body>
 </html>
+
+<script>
+    var cardErro = document.getElementById("cardErro");
+    var mensagem_erro = document.getElementById("mensagem_erro");
+
+    function entrar() {
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "Preencha todos os campos!";
+            return false;
+        } else {
+            setTimeout(sumirMensagem, 5000);
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!");
+
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json);
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idusuario;
+
+                    setTimeout(function () {
+                        window.location = "./quiz.html";
+                    }, 1000);
+                });
+
+            } else {
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    cardErro.style.display = "block";
+                    mensagem_erro.innerHTML = "Email ou senha inválidos.";
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none";
+    }
+</script>
+
+
+
