@@ -25,7 +25,20 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucaoSql);
 }
 
+function registrarCasa(idUsuario, idCasa) {
+    console.log("ACESSEI O USUARIO MODEL - registrarCasa():", idUsuario, idCasa);
+
+    var instrucaoSql = `
+        INSERT INTO CasaIdeal (fkusuario, fkCasa, dtResposta)
+        VALUES (${idUsuario}, ${idCasa}, CURRENT_DATE());
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    registrarCasa
 };

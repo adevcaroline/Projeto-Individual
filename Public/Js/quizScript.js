@@ -35,20 +35,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const showResult = () => {
-    const quizBox = document.querySelector(".quiz_box");
-    quizBox.innerHTML = "";
+ const showResult = () => {
+  const quizBox = document.querySelector(".quiz_box");
+  quizBox.innerHTML = "";
 
-    const topHouse = Object.entries(points).sort((a, b) => b[1] - a[1])[0][0];
-    const name = topHouse.charAt(0).toUpperCase() + topHouse.slice(1);
+  const topHouse = Object.entries(points).sort((a, b) => b[1] - a[1])[0][0];
+  const name = topHouse.charAt(0).toUpperCase() + topHouse.slice(1);
 
-    quizBox.innerHTML = `
-      <h2>Parabéns!</h2>
-      <p>Você foi selecionado para a <strong>${name}</strong>!</p>
-      <img src="${images[topHouse]}" alt="${name}">
-      <button class="restart-btn" onclick="location.reload()">Reiniciar Quiz</button>
-    `;
+  // Mapeando o nome da casa para o ID (você deve confirmar esses IDs no banco)
+  const casaMap = {
+    grifinoria: 1,
+    sonserina: 2,
+    corvinal: 3,
+    lufalufa: 4
   };
+
+  const idUsuario = sessionStorage.ID_USUARIO;
+  const idCasa = casaMap[topHouse];
+
+  // Enviar o resultado para o backend
+  fetch("/usuarios/registrar-casa", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      idUsuario: idUsuario,
+      idCasa: idCasa
+    })
+  }).then(res => {
+    if (!res.ok) {
+      console.error("Erro ao registrar a casa no banco de dados.");
+    }
+  }).catch(err => console.error(err));
+
+  quizBox.innerHTML = `
+    <h2>Parabéns!</h2>
+    <p>Você foi selecionado para a <strong>${name}</strong>!</p>
+    <img src="${images[topHouse]}" alt="${name}">
+    <button class="restart-btn" onclick="location.reload()">Reiniciar Quiz</button>
+  `;
+};
+
 
   nextBtn.onclick = () => {
     if (!selected) return;

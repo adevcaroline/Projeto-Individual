@@ -60,7 +60,25 @@ function cadastrar(req, res) {
     }
 }
 
+function registrarCasa(req, res) {
+    var idUsuario = req.body.idUsuario;
+    var idCasa = req.body.idCasa;
+
+    usuarioModel.registrarCasa(idUsuario, idCasa)
+        .then(resultado => {
+            res.status(200).json({ mensagem: "Casa registrada com sucesso" });
+        })
+        .catch(erro => {
+            console.log("Erro ao registrar casa:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    registrarCasa
 };
+
+
+
