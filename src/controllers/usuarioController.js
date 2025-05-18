@@ -74,11 +74,42 @@ function registrarCasa(req, res) {
         });
 }
 
+function obterEstatisticas(_req, res) {
+    usuarioModel.obterEstatisticas()
+        .then(resultado => {
+            res.status(200).json(resultado);
+        })
+        .catch(erro => {
+            console.log("Erro ao buscar estatísticas:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function buscarCasaDoUsuario(req, res) {
+    const idUsuario = req.params.idUsuario;
+
+    usuarioModel.buscarCasaDoUsuario(idUsuario)
+        .then(resultado => {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado[0]);
+            } else {
+                res.status(204).send(); // No Content
+            }
+        })
+        .catch(erro => {
+            console.error("Erro ao buscar casa do usuário:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     autenticar,
     cadastrar,
-    registrarCasa
+    registrarCasa,
+    obterEstatisticas,
+    buscarCasaDoUsuario 
 };
+
 
 
 

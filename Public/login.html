@@ -96,9 +96,11 @@
             if (resposta.ok) {
                 resposta.json().then(json => {
                     console.log(json);
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idusuario;
+                   sessionStorage.setItem("usuario", JSON.stringify({
+                    idusuario: json.idusuario,
+                     nome: json.nome,
+                     email: json.email
+}));
 
                     setTimeout(function () {
                         window.location = "./quiz.html";

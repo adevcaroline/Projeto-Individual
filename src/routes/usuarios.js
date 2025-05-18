@@ -15,6 +15,15 @@ router.post("/registrar-casa", function (req, res) {
     usuarioController.registrarCasa(req, res);
 });
 
+router.get("/estatisticas", function (req, res) {
+    usuarioController.obterEstatisticas(req, res);
+});
+
+router.get("/casa/:idUsuario", function (req, res) {
+    usuarioController.buscarCasaDoUsuario(req, res);
+});
+
+
 module.exports = router;
 
 

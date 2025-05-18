@@ -37,8 +37,31 @@ function registrarCasa(idUsuario, idCasa) {
     return database.executar(instrucaoSql);
 }
 
+function obterEstatisticas() {
+    const instrucaoSql = `
+        SELECT c.nomeCasa, COUNT(*) as quantidade
+        FROM CasaIdeal ci
+        JOIN Casa c ON ci.fkCasa = c.idCasa
+        GROUP BY c.nomeCasa;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function buscarCasaDoUsuario(idUsuario) {
+    const instrucaoSql = `
+        SELECT c.nomeCasa, c.descricao
+        FROM CasaIdeal ci
+        JOIN Casa c ON ci.fkCasa = c.idCasa
+        WHERE ci.fkusuario = ${idUsuario};
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
     cadastrar,
-    registrarCasa
+    registrarCasa,
+    obterEstatisticas,
+    buscarCasaDoUsuario
 };

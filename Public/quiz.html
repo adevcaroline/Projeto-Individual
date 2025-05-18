@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quiz das Casas de Hogwarts</title>
-  <link rel="stylesheet" href="./css/quiz.css">
+  <link rel="stylesheet" href="./css/quiz.css" />
   <style>
     .section { display: none; }
     .section.active { display: block; }
+    /* deixa resultado oculto inicialmente */
+    .resultadoQuiz { display: none; }
   </style>
 </head>
 <body>
- 
+
   <nav class="sidebar">
-    <a href="../Public/dashborad/dashborad.html"><span>⌂</span> Dash</a>
-    <a href="../Public/quiz.html"><span>💡</span> Quiz</a>
+    <a href="../dashboard.html"><span>⌂</span> Dash</a>
+    <a href="../quiz.html"><span>💡</span> Quiz</a>
     <a href="#"><span>👤</span> Perfil</a>
     <a href="#"><span>⚙️</span> Logout</a>
   </nav>
 
   <div class="container">
+    <!-- Caixa do quiz -->
     <div class="quiz_box">
       <h2 id="question-text">Pergunta</h2>
-      <div class="option_list" id="option-list">
-        <!-- Opções aparecem aqui -->
-      </div>
+      <div class="option_list" id="option-list"></div>
       <div class="next_btn">
         <button id="next-btn">Próxima</button>
       </div>
+    </div>
+
+    <!-- Resultado do quiz -->
+    <div class="resultadoQuiz" id="resultadoQuiz">
+      <h2>Você já respondeu o quiz!</h2>
+      <h3>Sua casa é <span id="nomeCasa"></span></h3>
+      <p id="descricaoCasa"></p>
+      <a href="dashboard/dashboard.html">Ir para a Dashboard</a>
     </div>
   </div>
 
   <script src="./Js/questions.js"></script>
   <script src="./Js/quizScript.js"></script>
+
 </body>
 </html>

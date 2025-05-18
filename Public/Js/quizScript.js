@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const questionText = document.getElementById("question-text");
   const optionList = document.getElementById("option-list");
   const nextBtn = document.getElementById("next-btn");
+  const quizBox = document.querySelector(".quiz_box");
+  const resultadoDiv = document.getElementById("resultadoQuiz");
+  const nomeCasaSpan = document.getElementById("nomeCasa");
+  const descricaoCasaP = document.getElementById("descricaoCasa");
 
   let current = 0;
   let selected = false;
@@ -14,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lufalufa: "assets/lufa-removebg-preview.png"
   };
 
+  // Função para mostrar a pergunta atual
   const showQuestion = () => {
     const q = questions[current];
     questionText.textContent = q.question;
@@ -35,61 +40,102 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
- const showResult = () => {
-  const quizBox = document.querySelector(".quiz_box");
-  quizBox.innerHTML = "";
+  // Função para mostrar resultado do quiz (após responder)
+  const showResult = () => {
+    quizBox.style.display = "none"; // esconde o quiz
+    resultadoDiv.style.display = "block"; // mostra resultado
 
-  const topHouse = Object.entries(points).sort((a, b) => b[1] - a[1])[0][0];
-  const name = topHouse.charAt(0).toUpperCase() + topHouse.slice(1);
+    const topHouse = Object.entries(points).sort((a, b) => b[1] - a[1])[0][0];
+    const name = topHouse.charAt(0).toUpperCase() + topHouse.slice(1);
 
-  // Mapeando o nome da casa para o ID (você deve confirmar esses IDs no banco)
-  const casaMap = {
-    grifinoria: 1,
-    sonserina: 2,
-    corvinal: 3,
-    lufalufa: 4
+    nomeCasaSpan.textContent = name;
+
+    // Aqui você pode colocar as descrições reais de cada casa
+    const descricoes = {
+      grifinoria: "Você é corajoso, destemido e leal.",
+      sonserina: "Você é ambicioso, astuto e determinado.",
+      corvinal: "Você é inteligente, criativo e sábio.",
+      lufalufa: "Você é justo, trabalhador e amigável."
+    };
+    descricaoCasaP.textContent = descricoes[topHouse] || "";
+
+    // Imagem opcional: se quiser colocar no resultado, adicione uma tag <img> e altere o src aqui
+    // Exemplo: resultadoDiv.querySelector("img").src = images[topHouse];
   };
 
-  const idUsuario = sessionStorage.ID_USUARIO;
-  const idCasa = casaMap[topHouse];
+  // Função para iniciar o quiz
+  const iniciarQuiz = () => {
+    quizBox.style.display = "block";
+    resultadoDiv.style.display = "none";
+    showQuestion();
 
-  // Enviar o resultado para o backend
-  fetch("/usuarios/registrar-casa", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      idUsuario: idUsuario,
-      idCasa: idCasa
+    nextBtn.onclick = () => {
+      if (!selected) return;
+      current++;
+      current < questions.length ? showQuestion() : finalizarQuiz();
+    };
+  };
+
+  // Função para finalizar o quiz e enviar resultado ao backend
+  const finalizarQuiz = () => {
+    // Enviar resultado ao backend e mostrar resultado localmente
+    const topHouse = Object.entries(points).sort((a, b) => b[1] - a[1])[0][0];
+    const casaMap = {
+      grifinoria: 1,
+      sonserina: 2,
+      corvinal: 3,
+      lufalufa: 4
+    };
+
+    const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+    const idUsuario = usuario?.idusuario;
+    const idCasa = casaMap[topHouse];
+
+    fetch("/usuarios/registrar-casa", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idUsuario, idCasa })
+    }).then(res => {
+      if (!res.ok) {
+        console.error("Erro ao registrar a casa no banco de dados.");
+      }
+      showResult();
+    }).catch(err => {
+      console.error("Erro ao registrar a casa:", err);
+      showResult();
+    });
+  };
+
+  // Verifica se o usuário já respondeu o quiz
+  const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+  if (!usuario || !usuario.idusuario) {
+    alert("Você precisa estar logado para acessar o quiz!");
+    window.location.href = "./login.html";
+    return;
+  }
+
+  fetch(`http://localhost:3333/usuarios/casa/${usuario.idusuario}`)
+    .then(res => {
+      if (res.status === 204) {
+        // Usuário ainda não respondeu, inicia o quiz
+        iniciarQuiz();
+        return null;
+      }
+      return res.json();
     })
-  }).then(res => {
-    if (!res.ok) {
-      console.error("Erro ao registrar a casa no banco de dados.");
-    }
-  }).catch(err => console.error(err));
-
-  quizBox.innerHTML = `
-    <h2>Parabéns!</h2>
-    <p>Você foi selecionado para a <strong>${name}</strong>!</p>
-    <img src="${images[topHouse]}" alt="${name}">
-    <button class="restart-btn" onclick="location.reload()">Reiniciar Quiz</button>
-  `;
-};
-
-
-  nextBtn.onclick = () => {
-    if (!selected) return;
-    current++;
-    current < questions.length ? showQuestion() : showResult();
-  };
-
-  showQuestion();
+    .then(data => {
+      if (data) {
+        // Exibe resultado do quiz
+        quizBox.style.display = "none";
+        resultadoDiv.style.display = "block";
+        nomeCasaSpan.textContent = data.nomeCasa || "";
+        descricaoCasaP.textContent = data.descricao || "";
+      }
+    })
+    .catch(err => {
+      console.error("Erro ao buscar casa do usuário:", err);
+      // Se erro, iniciar o quiz como fallback
+      iniciarQuiz();
+    });
 });
 
-window.onload = function () {
-    if (!sessionStorage.ID_USUARIO) {
-        alert("Você precisa estar logado para acessar o quiz!");
-        window.location = "./login.html";
-    }
-}

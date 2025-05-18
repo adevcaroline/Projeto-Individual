@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard Harry Potter</title>
+  <link rel="stylesheet" href="./css/dashborard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Ajuste para garantir que o canvas ocupe um espaço visível */
+    .chart-wrapper {
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<nav class="sidebar">
+  <div class="sidebar-top">
+    <a href="../dashboard.html"><span>⌂</span> Dash</a> 
+    <a href="../quiz.html"><span>💡</span> Quiz</a>
+    <a href="#"><span>👤</span> Perfil</a>
+  </div>
+  <div class="sidebar-bottom">
+    <a href="#"><span>⚙️</span> Logout</a>
+  </div>
+</nav>
+ 
+<div class="content">
+  <div class="kpi-container">
+    <div class="kpi">
+      <h2>Total de Participantes</h2>
+      <div id="totalParticipantes">...</div>
+    </div>
+    <div class="kpi">
+      <h2>Percentual por Casa</h2>
+      <div id="percentuaisPorCasa">...</div>
+    </div>
+    <div class="kpi">
+      <h2>Casa Mais Popular</h2>
+      <div id="casaPopular">...</div>
+    </div>
+  </div>
+
+  <div class="chart-wrapper">
+    <canvas id="casaChart"></canvas>
+  </div>
+</div>
+
+<script>
+  // Primeiro, verifica se o usuário está logado
+  const usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+  if (!usuario) {
+    alert("Você precisa estar logado para acessar a dashboard.");
+    window.location.href = "../login.html";
+  } else {
+    // Se estiver logado, busca os dados e monta a dashboard
+    fetch("http://localhost:3333/usuarios/estatisticas")
+      .then(res => res.json())
+      .then(dados => {
+        const casas = dados.map(item => item.nomeCasa);
+        const quantidades = dados.map(item => item.quantidade);
+        const total = quantidades.reduce((a, b) => a + b, 0);
+        const percentuais = quantidades.map(qtd => ((qtd / total) * 100).toFixed(1) + '%');
+        const indexMaisPopular = quantidades.indexOf(Math.max(...quantidades));
+        const casaMaisPopular = casas[indexMaisPopular];
+
+        document.getElementById('totalParticipantes').innerText = total;
+        document.getElementById('percentuaisPorCasa').innerText =
+          casas.map((casa, i) => `${casa}: ${percentuais[i]}`).join(' | ');
+        document.getElementById('casaPopular').innerText = casaMaisPopular;
+
+        const dataCasas = {
+          labels: casas,
+          datasets: [{
+            label: 'Número de pessoas',
+            data: quantidades,
+            backgroundColor: ['#b70d0d', '#0b6623', '#ffcc00', '#003399'],
+            borderRadius: 6
+          }]
+        };
+
+        const configCasas = {
+          type: 'bar',
+          data: dataCasas,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Número de pessoas'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Casa'
+                }
+              }
+            }
+          }
+        };
+
+        const ctx = document.getElementById('casaChart').getContext('2d');
+        new Chart(ctx, configCasas);
+      })
+      .catch(error => {
+        console.error("Erro ao carregar estatísticas:", error);
+      });
+  }
+</script>
+</body>
+</html>
