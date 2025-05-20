@@ -7,7 +7,7 @@
 
     body {
       font-family: 'Georgia', serif;
-      background: linear-gradient(rgba(172, 128, 84, 0.781) 100%), url("../assets/fundinho.jpg");
+      background: linear-gradient(rgba(236, 233, 230, 0.781) 100%), url("../assets/fundinho.jpg");
       display: flex;
       height: 100px;
     }

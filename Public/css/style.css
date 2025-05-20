@@ -115,14 +115,6 @@ body {
     margin-right: 100px;
 }
 
-.sobre .descricao {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: 600px;
-    
-}
-
 .sobre .descricao span {
     font-size: 32px;
     color: #f5deb3;
@@ -151,6 +143,42 @@ body {
     object-fit: cover;
     border-radius: 60px;
   }
+
+  /* 
+  SOBRE A DESEV
+  */
+
+#sobre-mim {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+  background-color: #f8f8f8; /* opcional */
+}
+
+.sobre-mim {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.sobre-mim .imagem img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.sobre-mim .descricao {
+  max-width: 600px;
+}
+
+/* .sobre-mim .descricao span {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+} */
 
 /* QUIZ */
 

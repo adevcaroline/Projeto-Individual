@@ -6,41 +6,14 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   display: flex;
-       background: linear-gradient(rgba(172, 128, 84, 0.781) 100%), url("../assets/fundinho.jpg");
+       background: linear-gradient(rgba(253, 253, 253, 0.781) 100%), url("../assets/fundinho.jpg");
 }
-
-/* Sidebar */
-/* nav.sidebar {
-  background-color:#502218;
-  color: #fff;
-  width: 160px;
-  height: 700px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 30px;
-  position: fixed;
-}
-
-nav.sidebar a {
-  color: #f4ecd8;
-  text-decoration: none;
-  font-size: 16px;
-  margin: 15px 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-nav.sidebar a:hover {
-  color: #ffcc00;
-} */
 
 nav.sidebar {
-  background-color: #531f13; /* marrom escuro */
+  background-color: #a11e0dfa; /* marrom escuro */
   color: #fff;
-  width: 180px;
-  height: 100vh;
+  width: 150px;
+  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* empurra o logout para o final */
