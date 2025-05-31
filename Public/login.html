@@ -36,32 +36,27 @@
                     </div>
                     <button class="botao"  onclick="entrar()">Entrar</button>
                       <p class="redirect-msg">
-                    Já possui Cadastro? <a href="cadastro.html" class="redirect-link">Clique aqui</a>
+                    Não possui Cadastro? <a href="cadastro.html" class="redirect-link">Clique aqui</a>
                 </div>
 
             </div>
         </div>
     </div>
-
-
 </body>
 </html>
 
 <script>
-    var cardErro = document.getElementById("cardErro");
-    var mensagem_erro = document.getElementById("mensagem_erro");
+   // var cardErro = document.getElementById("cardErro");
+    //var mensagem_erro = document.getElementById("mensagem_erro");
 
     function entrar() {
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block";
-            mensagem_erro.innerHTML = "Preencha todos os campos!";
+           alert(`Preencha todos os campos!`);
             return false;
-        } else {
-            setTimeout(sumirMensagem, 5000);
-        }
+        } 
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -95,8 +90,7 @@
             } else {
                 resposta.text().then(texto => {
                     console.error(texto);
-                    cardErro.style.display = "block";
-                    mensagem_erro.innerHTML = "Email ou senha inválidos.";
+                    alert(`Email ou senha inválidos.`);
                 });
             }
         }).catch(function (erro) {
@@ -106,9 +100,9 @@
         return false;
     }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none";
-    }
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none";
+    // }
 </script>
 
 
