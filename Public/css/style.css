@@ -2,7 +2,10 @@
 
 * {
   font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
 
 body {
     margin: 0;
@@ -11,29 +14,30 @@ body {
     background: linear-gradient(rgba(172, 128, 84, 0.781) 100%), url("../assets/fundinho.jpg");
 }
 
+
 .header {
     position: sticky;
-    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 50px;
-    height: 60px;
+    padding: 10px 20px;
+    height: 50px;
     background: linear-gradient(0deg, rgba(223, 191, 14, 0.562) 0%, rgba(146, 86, 6, 0.897) 100%);
     backdrop-filter: blur(10px);
 }
 .logo {
-    margin-left: 25px;
-    height: 50px;
+    margin-left: 10px;
+    height: 40px;
 }
 
 .nav {
     display: flex;
-    list-style: none; 
-    gap: 25px;
+    list-style: none;
+    gap: 15px;
     margin: 0;
     padding: 0;
 }
+
 
 .nav li a {
     color: white;
@@ -41,9 +45,11 @@ body {
     font-size: 16px;
 }
 
+
 .nav li a:hover {
     color: #d4af37;
 }
+
 
 .botao {
     background-color: #d4af37;
@@ -54,29 +60,36 @@ body {
     font-weight: bold;
 }
 
+
 .botao:hover {
     background-color: #bfa032;
 }
 
+
 .content-section {
-    height: 550px;
+    height: 400px;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.14) 0%, rgba(0, 0, 0, 0.74) 100%), url(../assets/castelo-banner.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
 }
 
+
 .content-section .column-1 {
     width: 46%;
 }
 
+
 .content-section .column-2 {
-    width: 54%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
+    font-size: 18px;
+    width: 90%;
+    max-width: 500px;
 }
+
 
 
 .content-section .column-2 p {
@@ -87,8 +100,14 @@ body {
     margin: 32px 0;
 }
 
+
 #sobre-a-saga {
-    margin-top: 60px;
+    margin-top: 70px;
+}
+
+
+#sobre2 {
+     margin-right: 0;
 }
 
 
@@ -96,92 +115,124 @@ body {
     margin-left: 100px;
 }
 
+
 .sobre {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-.sobre .imagem {
-    margin-left: 100px;  /* Adiciona a margem para mover a imagem para a direita */
-}
-.sobre .imagem img {
-    height: 320px;
-    width: 508px;
-    border-radius: 60px;
-    border: 2px solid #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 100px;
+  display: flex;
+  align-items: center;
 }
 
-.sobre .descricao span {
-    font-size: 32px;
-    color: #f5deb3;
-    margin-bottom: 16px;
-    font-weight: bold;
+
+
+
+.sobre,
+.sobre-invertida {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 50px;
+  gap: 30px;
 }
 
-.sobre .descricao p {
-    font-size: 20px;
-    line-height: 1.6;
-    color: #ffffff;
-    margin-bottom: 30px;
+
+
+
+#sobre2 .sobre-invertida {
+  flex-direction: row-reverse;
 }
 
-#sobre2 .sobre {
-    flex-direction: row-reverse;
-}
-#sobre2 .descricao {
-    margin-left: 100px;
+
+
+
+/* Container da imagem */
+.sobre-invertida .imagem {
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  margin-right: 100px;
 }
 
-.img-imagem video {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 60px;
-  }
 
-  /* 
+/* Imagem em si */
+.sobre .imagem img,
+.sobre-invertida .imagem img {
+  width: 100%;
+  height: auto;
+  border-radius: 60px;
+  border: 2px solid #ffffff;
+  max-width: 400px;
+  border-radius: 30px;
+}
+
+
+/* Container do texto */
+.sobre .descricao,
+.sobre-invertida .descricao {
+  max-width: 500px;
+}
+
+
+/* Título */
+.sobre .descricao span,
+.sobre-invertida .descricao span {
+   font-size: 28px;
+  color: #f5deb3;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+
+/* Parágrafo */
+.sobre .descricao p,
+.sobre-invertida .descricao p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+
+
+.sobre video {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 30px;
+  border: 2px solid #ffffff;
+  display: block;
+}
+
+
+  /*
   SOBRE A DESEV
   */
 
+/* ===== ESTILOS EXCLUSIVOS PARA A SEÇÃO "SOBRE MIM" ===== */
 #sobre-mim {
-  display: flex;
-  justify-content: center;
-  padding: 60px 20px;
-  background-color: #f8f8f8; /* opcional */
+    padding: 60px 0; /* Espaçamento padrão */
 }
 
-.sobre-mim {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  max-width: 1200px;
-  width: 100%;
+/* --- Imagem da desenvolvedora --- */
+#sobre-mim .imagem img.foto-dev {
+    max-height: 400px;       /* Altura personalizada (ajuste conforme necessidade) */
+    width: 350px;             /* Mantém a proporção */
+    border-radius: 30px;     /* Borda arredondada */
+    border: 2px solid #d4af37; /* Bordas douradas (opcional) */
+    object-fit: cover;       /* Garante que a imagem cubra o espaço sem distorcer */
 }
 
-.sobre-mim .imagem img {
-  max-width: 300px;
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+/* --- Container da imagem --- */
+#sobre-mim .imagem {
+    max-width: 350px;        /* Largura máxima do container */
+    margin: 0 auto;          /* Centraliza a imagem */
 }
 
-.sobre-mim .descricao {
-  max-width: 600px;
+/* --- Ajuste de espaçamento entre imagem e texto --- */
+#sobre-mim .sobre {
+    gap: 150px;               /* Espaço entre imagem e texto (igual às outras seções) */
 }
-
-/* .sobre-mim .descricao span {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 10px;
-} */
 
 /* QUIZ */
-
 
 #quiz {
   padding: 60px 20px;
@@ -190,6 +241,7 @@ body {
   align-items: center;
   font-family: 'Georgia', serif;
 }
+
 
 .quiz-card {
   background-color: #f7f1e4;
@@ -201,12 +253,14 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+
 .quiz-card h2 {
   font-size: 18px;
   color: #444;
   margin-bottom: 10px;
   letter-spacing: 1px;
 }
+
 
 .quiz-card h1 {
   font-size: 36px;
@@ -215,6 +269,7 @@ body {
   margin-bottom: 5px;
 }
 
+
 .quiz-sub {
   font-size: 20px;
   margin: 10px 0;
@@ -222,11 +277,13 @@ body {
   font-style: italic;
 }
 
+
 .quiz-desc {
   font-size: 16px;
   color: #444;
   margin-bottom: 20px;
 }
+
 
 .botaocomecar {
   background-color: #a93c3c;
@@ -240,9 +297,11 @@ body {
   text-decoration: none;
 }
 
+
 .botaocomecar:hover {
   background-color: #8b2f2f;
 }
+
 
 .img {
   margin: 25px auto 15px;
@@ -250,11 +309,13 @@ body {
   display: block;
 }
 
+
 .botao-texto {
   font-size: 16px;
   color: #333;
   margin-top: 10px;
 }
+
 
 .sobre-mim .imagem {
     margin-left: 300px;  /* Adiciona a margem para mover a imagem para a direita */
@@ -275,17 +336,39 @@ body {
     gap: 50px;
 }
 
+
 .sobre-mim .descricao {
     display: flex;
     flex-direction: column;
     justify-content: center;
     max-width: 600px;
-    
+   
 }
+
 
 .sobre-mim .descricao span {
     font-size: 32px;
     color: #f5deb3;
     margin-bottom: 16px;
     font-weight: bold;
+}
+
+.footer-dev {
+    background: linear-gradient(0deg, rgba(146, 86, 6, 0.9) 0%, rgba(223, 191, 14, 0.6) 100%);
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    border-top: 1px solid #d4af37;
+}
+
+.footer-dev p {
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.footer-dev strong {
+    color: #f5deb3;
+    font-weight: 600;
 }
