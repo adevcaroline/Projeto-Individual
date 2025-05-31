@@ -6,7 +6,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   display: flex;
-       background: linear-gradient(rgba(253, 253, 253, 0.781) 100%), url("../assets/fundinho.jpg");
+  background: linear-gradient(rgba(253, 253, 253, 0.781) 100%), url("../assets/fundinho.jpg");
 }
 
 nav.sidebar {
@@ -16,7 +16,6 @@ nav.sidebar {
   height: 800px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* empurra o logout para o final */
   padding: 30px 10px;
   position: fixed;
 }
