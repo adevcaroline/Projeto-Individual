@@ -16,12 +16,14 @@ CREATE TABLE Casa (
 );
 
 CREATE TABLE CasaIdeal (
+    idResposta INT PRIMARY KEY AUTO_INCREMENT,
     fkusuario INT,
     fkCasa INT,
     dtResposta DATE,
-    PRIMARY KEY (fkusuario, fkCasa),
     FOREIGN KEY (fkusuario) REFERENCES usuario(idusuario),
     FOREIGN KEY (fkCasa) REFERENCES Casa(idCasa)
 );
 
 SELECT * FROM usuario;
+SELECT * FROM casaIdeal;
+

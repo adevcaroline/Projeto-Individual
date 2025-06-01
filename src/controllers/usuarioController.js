@@ -90,9 +90,9 @@ function buscarCasaDoUsuario(req, res) {
     usuarioModel.buscarCasaDoUsuario(idUsuario)
         .then(resultado => {
             if (resultado.length > 0) {
-                res.status(200).json(resultado[0]);
+                res.json(resultado[0]);
             } else {
-                res.status(204).send(); // No Content
+                res.status(404).send("Casa não encontrada");
             }
         })
         .catch(erro => {

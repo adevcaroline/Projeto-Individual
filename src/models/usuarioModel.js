@@ -39,9 +39,14 @@ function registrarCasa(idUsuario, idCasa) {
 
 function obterEstatisticas() {
     const instrucaoSql = `
-        SELECT c.nomeCasa, COUNT(*) as quantidade
+   SELECT c.nomeCasa, COUNT(*) AS quantidade
         FROM CasaIdeal ci
         JOIN Casa c ON ci.fkCasa = c.idCasa
+        JOIN (
+            SELECT fkusuario, MAX(idResposta) AS maxIdResposta
+            FROM CasaIdeal
+            GROUP BY fkusuario
+        ) ultimas ON ci.fkusuario = ultimas.fkusuario AND ci.idResposta = ultimas.maxIdResposta
         GROUP BY c.nomeCasa;
     `;
 
@@ -53,7 +58,11 @@ function buscarCasaDoUsuario(idUsuario) {
         SELECT c.nomeCasa, c.descricao
         FROM CasaIdeal ci
         JOIN Casa c ON ci.fkCasa = c.idCasa
-        WHERE ci.fkusuario = ${idUsuario};
+        WHERE ci.idResposta = (
+            SELECT MAX(idResposta)
+            FROM CasaIdeal
+            WHERE fkusuario = ${idUsuario}
+        );
     `;
     return database.executar(instrucaoSql);
 }

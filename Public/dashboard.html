@@ -32,12 +32,12 @@
       <h2>Total de Participantes</h2>
       <div id="totalParticipantes">...</div>
     </div>
-    <div class="kpi">
+    <!-- <div class="kpi">
       <h2>Percentual por Casa</h2>
       <div id="percentuaisPorCasa">...</div>
-    </div>
+    </div> -->
     <div class="kpi">
-      <h2>Casa Mais Popular</h2>
+      <h2>Sua Casa</h2>
       <div id="casaPopular">...</div>
     </div>
   </div>
@@ -48,35 +48,39 @@
 </div>
 
 <script>
-  // Primeiro, verifica se o usuário está logado
   const usuario = JSON.parse(sessionStorage.getItem("usuario"));
 
   if (!usuario) {
     alert("Você precisa estar logado para acessar a dashboard.");
     window.location.href = "../login.html";
   } else {
-    // Se estiver logado, busca os dados e monta a dashboard
+    // Buscar a casa do usuário logado (última resposta)
+    fetch(`http://localhost:3333/usuarios/casa/${usuario.idusuario}`)
+      .then(res => res.json())
+      .then(casaUsuario => {
+        document.getElementById('casaPopular').innerText = casaUsuario.nomeCasa;
+      })
+      .catch(erro => {
+        console.error("Erro ao buscar casa do usuário:", erro);
+        document.getElementById('casaPopular').innerText = "Erro ao carregar";
+      });
+
+    // Buscar estatísticas gerais para o gráfico
     fetch("http://localhost:3333/usuarios/estatisticas")
       .then(res => res.json())
       .then(dados => {
         const casas = dados.map(item => item.nomeCasa);
         const quantidades = dados.map(item => item.quantidade);
         const total = quantidades.reduce((a, b) => a + b, 0);
-        const percentuais = quantidades.map(qtd => ((qtd / total) * 100).toFixed(1) + '%');
-        const indexMaisPopular = quantidades.indexOf(Math.max(...quantidades));
-        const casaMaisPopular = casas[indexMaisPopular];
 
         document.getElementById('totalParticipantes').innerText = total;
-        document.getElementById('percentuaisPorCasa').innerText =
-          casas.map((casa, i) => `${casa}: ${percentuais[i]}`).join(' | ');
-        document.getElementById('casaPopular').innerText = casaMaisPopular;
 
         const dataCasas = {
           labels: casas,
           datasets: [{
             label: 'Número de pessoas',
             data: quantidades,
-            backgroundColor: ['#b70d0d', '#0b6623', '#003399', '#ffcc00 '],
+            backgroundColor: ['#b70d0d', '#0b6623', '#ffcc00', '#003399'],
             borderRadius: 6
           }]
         };
@@ -113,5 +117,6 @@
       });
   }
 </script>
+
 </body>
 </html>
