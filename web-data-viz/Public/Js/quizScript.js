@@ -6,20 +6,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultadoDiv = document.getElementById("resultadoQuiz");
   const nomeCasaSpan = document.getElementById("nomeCasa");
   const descricaoCasaP = document.getElementById("descricaoCasa");
-  const points = { grifinoria: 0, sonserina: 0, corvinal: 0, lufalufa: 0 };
+
+  const casas = ["grifinoria", "sonserina", "corvinal", "lufalufa"];
+  const points = [0, 0, 0, 0]; // índices correspondem às casas
+
   let current = 0;
   let selected = false;
 
-  const reiniciarQuiz = () => {
-    current = 0;
-    selected = false;
-    for (let casa in points) points[casa] = 0;
-    iniciarQuiz();
-  };
+function reiniciarQuiz() {
+  current = 0;
+  selected = false;
+  for (let i = 0; i < points.length; i++) {
+    points[i] = 0;
+  }
+  iniciarQuiz();
+}
 
   const btnReiniciar = document.getElementById("reiniciarQuiz");
   btnReiniciar.addEventListener("click", reiniciarQuiz);
-  
+
   const images = {
     grifinoria: "assets/grifinoria.png",
     sonserina: "assets/sonserina.png",
@@ -40,7 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
       div.onclick = () => {
         if (selected) return;
         selected = true;
-        points[opt.house]++;
+        const index = casas.indexOf(opt.house);
+        if (index !== -1) {
+          points[index]++;
+        }
         div.classList.add("selected");
         [...optionList.children].forEach(c => c.classList.add("disabled"));
       };
@@ -52,7 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
     quizBox.style.display = "none";
     resultadoDiv.style.display = "block";
 
-    const topHouse = Object.entries(points).sort((a, b) => b[1] - a[1])[0][0];
+    const maxIndex = points.indexOf(Math.max(...points));
+    const topHouse = casas[maxIndex];
     const name = topHouse.charAt(0).toUpperCase() + topHouse.slice(1);
 
     nomeCasaSpan.textContent = name;
@@ -67,7 +76,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const finalizarQuiz = () => {
-    const topHouse = Object.entries(points).sort((a, b) => b[1] - a[1])[0][0];
+    const maxIndex = points.indexOf(Math.max(...points));
+    const topHouse = casas[maxIndex];
+
     const casaMap = {
       grifinoria: 1,
       sonserina: 2,

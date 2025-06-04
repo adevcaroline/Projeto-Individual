@@ -24,6 +24,10 @@ CREATE TABLE CasaIdeal (
     FOREIGN KEY (fkCasa) REFERENCES Casa(idCasa)
 );
 
+SELECT * FROM Casa;
 SELECT * FROM usuario;
 SELECT * FROM casaIdeal;
+SELECT * FROM Casa;
+
+SELECT * FROM CasaIdeal WHERE fkusuario = 8;
 
