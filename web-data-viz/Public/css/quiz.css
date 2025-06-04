@@ -7,12 +7,11 @@
 
     body {
       font-family: 'Georgia', serif;
-      background: linear-gradient(rgba(211, 173, 122, 0.719) 100%), url("../assets/fundinho.jpg");
+      background: linear-gradient(rgba(202, 127, 52, 0.521) 100%), url("../assets/fundinho.jpg");
       display: flex;
       height: 100px;
     }
     
-/* Sidebar */
 
 nav.sidebar {
   background-color: #cc8b3f;
@@ -167,3 +166,12 @@ nav.sidebar a:hover {
   background-color: #a86d2a;
 }
 
+#reiniciarQuiz {
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 13px;
+  background-color: #cc8a3fd5;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
