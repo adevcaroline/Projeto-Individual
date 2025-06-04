@@ -8,7 +8,7 @@
   <style>
     .section { display: none; }
     .section.active { display: block; }
-    /* deixa resultado oculto inicialmente */
+    
     .resultadoQuiz { display: none; }
   </style>
 </head>
@@ -19,7 +19,7 @@
     <a href="../quiz.html"><span>💡</span> Quiz</a>
   </div>
   <div class="sidebar-bottom">
-    <a href="#"><span>⚙️</span> Logout</a>
+    <a href="#" id="botaoLogout"><span>⚙️</span> Logout</a>
   </div>
 </nav>
 
@@ -45,6 +45,25 @@
 
   <script src="./Js/questions.js"></script>
   <script src="./Js/quizScript.js"></script>
+<script>
+ 
+  document.addEventListener("DOMContentLoaded", () => {
+    const botaoLogout = document.getElementById("botaoLogout");
 
+
+    botaoLogout.addEventListener("click", (event) => {
+      event.preventDefault(); 
+
+
+      const confirmar = confirm("Deseja realmente sair?");
+
+
+      if (confirmar) {
+        sessionStorage.clear(); 
+        window.location.href = "index.html"; 
+      }
+    });
+  });
+</script>
 </body>
 </html>
