@@ -6,11 +6,11 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   display: flex;
-  background: linear-gradient(rgba(253, 253, 253, 0.781) 100%), url("../assets/fundinho.jpg");
+  background: linear-gradient(rgba(211, 173, 122, 0.719) 100%), url("../assets/fundinho.jpg");
 }
 
 nav.sidebar {
-  background-color: #a11e0dfa; /* marrom escuro */
+  background-color: #cc8b3f;
   color: #fff;
   width: 150px;
   height: 800px;

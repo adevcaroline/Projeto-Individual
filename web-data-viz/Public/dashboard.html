@@ -19,7 +19,6 @@
   <div class="sidebar-top">
     <a href="../dashboard.html"><span>📊</span> Dash</a> 
     <a href="../quiz.html"><span>💡</span> Quiz</a>
-    <a href="#"><span>👤</span> Perfil</a>
   </div>
   <div class="sidebar-bottom">
     <a href="#"><span>⚙️</span> Logout</a>
@@ -32,10 +31,7 @@
       <h2>Total de Participantes</h2>
       <div id="totalParticipantes">...</div>
     </div>
-    <!-- <div class="kpi">
-      <h2>Percentual por Casa</h2>
-      <div id="percentuaisPorCasa">...</div>
-    </div> -->
+   
     <div class="kpi">
       <h2>Sua Casa</h2>
       <div id="casaPopular">...</div>
@@ -54,7 +50,7 @@
     alert("Você precisa estar logado para acessar a dashboard.");
     window.location.href = "../login.html";
   } else {
-    // Buscar a casa do usuário logado (última resposta)
+    
     fetch(`http://localhost:3333/usuarios/casa/${usuario.idusuario}`)
       .then(res => res.json())
       .then(casaUsuario => {
@@ -65,7 +61,7 @@
         document.getElementById('casaPopular').innerText = "Erro ao carregar";
       });
 
-    // Buscar estatísticas gerais para o gráfico
+    
     fetch("http://localhost:3333/usuarios/estatisticas")
       .then(res => res.json())
       .then(dados => {

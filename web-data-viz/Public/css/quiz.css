@@ -7,7 +7,7 @@
 
     body {
       font-family: 'Georgia', serif;
-      background: linear-gradient(rgba(236, 233, 230, 0.781) 100%), url("../assets/fundinho.jpg");
+      background: linear-gradient(rgba(211, 173, 122, 0.719) 100%), url("../assets/fundinho.jpg");
       display: flex;
       height: 100px;
     }
@@ -15,7 +15,7 @@
 /* Sidebar */
 
 nav.sidebar {
-  background-color: #a11e0dfa; /* marrom escuro */
+  background-color: #cc8b3f;
   color: #fff;
   width: 150px;
   height: 800px;
@@ -39,7 +39,7 @@ nav.sidebar a {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-left: 10px; /* mais à esquerda */
+  padding-left: 
 }
 
 nav.sidebar a:hover {
@@ -161,14 +161,9 @@ nav.sidebar a:hover {
   color: #fff;
   border-radius: 6px;
   font-size: 16px;
-  transition: background 0.3s ease;
 }
 
 .resultadoQuiz a:hover {
   background-color: #a86d2a;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
