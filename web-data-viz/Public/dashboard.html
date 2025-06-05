@@ -67,9 +67,13 @@
       .then(dados => {
         const casas = dados.map(item => item.nomeCasa);
         const quantidades = dados.map(item => item.quantidade);
-        const total = quantidades.reduce((a, b) => a + b, 0);
-
+        let total = 0;
+        for (let i = 0; i < quantidades.length; i++) {
+        total += quantidades[i];
+        }
         document.getElementById('totalParticipantes').innerText = total;
+
+      
 
         const dataCasas = {
           labels: casas,

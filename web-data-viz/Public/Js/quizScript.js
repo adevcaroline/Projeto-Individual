@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
   const questionText = document.getElementById("question-text");
   const optionList = document.getElementById("option-list");
   const nextBtn = document.getElementById("next-btn");
@@ -8,55 +8,53 @@ document.addEventListener("DOMContentLoaded", () => {
   const descricaoCasaP = document.getElementById("descricaoCasa");
 
   const casas = ["grifinoria", "sonserina", "corvinal", "lufalufa"];
-  const points = [0, 0, 0, 0]; // índices correspondem às casas
+  const points = [0, 0, 0, 0]; 
 
   let current = 0;
   let selected = false;
 
-function reiniciarQuiz() {
-  current = 0;
-  selected = false;
-  for (let i = 0; i < points.length; i++) {
-    points[i] = 0;
+  function reiniciarQuiz() {
+    current = 0;
+    selected = false;
+    for (let i = 0; i < points.length; i++) {
+      points[i] = 0;
+    }
+    iniciarQuiz();
   }
-  iniciarQuiz();
-}
 
   const btnReiniciar = document.getElementById("reiniciarQuiz");
   btnReiniciar.addEventListener("click", reiniciarQuiz);
 
-  const images = {
-    grifinoria: "assets/grifinoria.png",
-    sonserina: "assets/sonserina.png",
-    corvinal: "assets/corvinal.png",
-    lufalufa: "assets/lufa-removebg-preview.png"
-  };
-
-  const showQuestion = () => {
+  function showQuestion() {
     const q = questions[current];
     questionText.textContent = q.question;
     optionList.innerHTML = "";
     selected = false;
 
-    q.options.forEach(opt => {
+    q.options.forEach(function (opt) {
       const div = document.createElement("div");
       div.textContent = opt.text;
       div.classList.add("option");
-      div.onclick = () => {
-        if (selected) return;
+      div.onclick = function () {
+        if (selected) {
+          return;
+        }
+
         selected = true;
         const index = casas.indexOf(opt.house);
         if (index !== -1) {
           points[index]++;
         }
         div.classList.add("selected");
-        [...optionList.children].forEach(c => c.classList.add("disabled"));
+        Array.from(optionList.children).forEach(function (c) {
+          c.classList.add("disabled");
+        });
       };
       optionList.appendChild(div);
     });
-  };
+  }
 
-  const showResult = () => {
+  function showResult() {
     quizBox.style.display = "none";
     resultadoDiv.style.display = "block";
 
@@ -73,9 +71,9 @@ function reiniciarQuiz() {
       lufalufa: "Você é justo, trabalhador e amigável."
     };
     descricaoCasaP.textContent = descricoes[topHouse] || "";
-  };
+  }
 
-  const finalizarQuiz = () => {
+  function finalizarQuiz() {
     const maxIndex = points.indexOf(Math.max(...points));
     const topHouse = casas[maxIndex];
 
@@ -94,28 +92,35 @@ function reiniciarQuiz() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ idUsuario, idCasa })
-    }).then(res => {
+    }).then(function (res) {
       if (!res.ok) {
         console.error("Erro ao registrar a casa no banco de dados.");
       }
       showResult();
-    }).catch(err => {
+    }).catch(function (err) {
       console.error("Erro ao registrar a casa:", err);
       showResult();
     });
-  };
+  }
 
-  const iniciarQuiz = () => {
+  function iniciarQuiz() {
     quizBox.style.display = "block";
     resultadoDiv.style.display = "none";
     showQuestion();
 
-    nextBtn.onclick = () => {
-      if (!selected) return;
+    nextBtn.onclick = function () {
+      if (!selected) {
+        alert("Por favor, selecione uma opção antes de continuar.");
+        return;
+      }
       current++;
-      current < questions.length ? showQuestion() : finalizarQuiz();
+      if (current < questions.length) {
+        showQuestion();
+      } else {
+        finalizarQuiz();
+      }
     };
-  };
+  }
 
   const usuario = JSON.parse(sessionStorage.getItem("usuario"));
   if (!usuario || !usuario.idusuario) {
@@ -124,15 +129,15 @@ function reiniciarQuiz() {
     return;
   }
 
-  fetch(`http://localhost:3333/usuarios/casa/${usuario.idusuario}`)
-    .then(res => {
+  fetch("http://localhost:3333/usuarios/casa/" + usuario.idusuario)
+    .then(function (res) {
       if (res.status === 204) {
         iniciarQuiz();
         return null;
       }
       return res.json();
     })
-    .then(data => {
+    .then(function (data) {
       if (data) {
         quizBox.style.display = "none";
         resultadoDiv.style.display = "block";
@@ -140,7 +145,7 @@ function reiniciarQuiz() {
         descricaoCasaP.textContent = data.descricao || "";
       }
     })
-    .catch(err => {
+    .catch(function (err) {
       console.error("Erro ao buscar casa do usuário:", err);
       iniciarQuiz();
     });

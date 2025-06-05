@@ -106,3 +106,7 @@ input:focus {
   color: #d4af37;
 }
 
+.aviso-senha {
+  font-size: 12px; 
+  color: #555; 
+}
